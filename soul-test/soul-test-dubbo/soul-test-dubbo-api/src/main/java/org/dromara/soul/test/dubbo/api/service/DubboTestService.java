@@ -85,7 +85,7 @@ public interface DubboTestService {
      * @param name      the name
      * @return the dubbo test
      */
-    DubboTest testEntityStringParam(DubboTest dubboTest, String id, Integer name);
+    DubboTest testEntityStringParam(DubboTest dubboTest, String id, int name);
 
     /**
      * Test multi entity dubbo test.
@@ -102,6 +102,6 @@ public interface DubboTestService {
      * @param dubboTestList the dubbo test list
      * @return the dubbo test
      */
-    DubboTest testListEntity(List<DubboTest> dubboTestList);
+    DubboTest testListEntity(List<DubboTest> dubboTestList,String name,List<DubboTest> dubboTestList2,String id,int age);
 
 }

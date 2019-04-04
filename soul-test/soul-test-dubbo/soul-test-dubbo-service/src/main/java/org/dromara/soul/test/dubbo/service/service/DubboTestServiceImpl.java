@@ -42,8 +42,10 @@ public class DubboTestServiceImpl implements DubboTestService {
     @Override
     public DubboTest insert(DubboTest dubboTest) {
         DubboTest test = new DubboTest();
-        test.setId("2");
-        test.setName("myth");
+        test.setId(dubboTest.getId());
+        test.setName(dubboTest.getName());
+        test.setAddress(dubboTest.getAddress());
+
         return test;
     }
 
@@ -70,7 +72,7 @@ public class DubboTestServiceImpl implements DubboTestService {
     }
 
     @Override
-    public DubboTest testEntityStringParam(DubboTest dubboTest, String id, Integer name) {
+    public DubboTest testEntityStringParam(DubboTest dubboTest, String id, int name) {
         DubboTest test = new DubboTest();
         test.setName("测试调用参数为实体与String类型参数");
         return test;
@@ -85,7 +87,7 @@ public class DubboTestServiceImpl implements DubboTestService {
     }
 
     @Override
-    public DubboTest testListEntity(List<DubboTest> dubboTestList) {
+    public  DubboTest testListEntity(List<DubboTest> dubboTestList,String name,List<DubboTest> dubboTestList2,String id,int age){
         DubboTest test = new DubboTest();
         test.setName("测试调用List泛型实体参数");
         test.setId("111111");

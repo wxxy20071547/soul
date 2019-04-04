@@ -44,7 +44,7 @@ public class DubboServiceProxyTest extends BaseTest {
 
         selectorHandle = new DubboSelectorHandle();
         selectorHandle.setAppName("local");
-        selectorHandle.setRegistry("zookeeper://localhost:2181");
+        selectorHandle.setRegistry("zookeeper://zk.zookeeper:2181");
 
         ruleHandle = new DubboRuleHandle();
     }

@@ -284,7 +284,7 @@ public class ZookeeperClientTest extends BaseTest {
     private static Pair<DubboSelectorHandle, DubboRuleHandle> buildDubboHandle() {
         DubboSelectorHandle selectorHandle = new DubboSelectorHandle();
         selectorHandle.setAppName("local");
-        selectorHandle.setRegistry("zookeeper://localhost:2181");
+        selectorHandle.setRegistry("zookeeper://zk.zookeeper:2181");
 
         DubboRuleHandle ruleHandle = new DubboRuleHandle();
 
