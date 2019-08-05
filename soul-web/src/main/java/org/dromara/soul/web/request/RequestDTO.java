@@ -23,9 +23,9 @@ import org.dromara.soul.common.constant.Constants;
 import org.dromara.soul.common.enums.HttpMethodEnum;
 import org.dromara.soul.common.enums.RpcTypeEnum;
 import org.springframework.http.server.reactive.ServerHttpRequest;
+import org.springframework.util.MultiValueMap;
 
 import java.io.Serializable;
-import java.net.URLDecoder;
 
 /**
  * the soul request DTO .
@@ -88,6 +88,11 @@ public class RequestDTO implements Serializable {
     private String extInfo;
 
     /**
+     * pathVariable
+     */
+    private String pathVariable;
+
+    /**
      * ServerHttpRequest transform RequestDTO .
      *
      * @param request {@linkplain ServerHttpRequest}
@@ -101,14 +106,8 @@ public class RequestDTO implements Serializable {
         final String rpcType = request.getHeaders().getFirst(Constants.RPC_TYPE);
         final String sign = request.getHeaders().getFirst(Constants.SIGN);
         final String timestamp = request.getHeaders().getFirst(Constants.TIMESTAMP);
-        String dubboParamsDecoder = null;
-        try {
-            dubboParamsDecoder = URLDecoder.decode(request.getHeaders().getFirst(Constants.DUBBO_PARAMS),"UTF-8");
-        }catch (Exception e ){
-
-        }
-        final String dubboParams = dubboParamsDecoder;
         final String extInfo = request.getHeaders().getFirst(Constants.EXT_INFO);
+        final String pathVariable = request.getHeaders().getFirst(Constants.PATH_VARIABLE);
         RequestDTO requestDTO = new RequestDTO();
         requestDTO.setModule(module);
         requestDTO.setMethod(method);
@@ -117,8 +116,16 @@ public class RequestDTO implements Serializable {
         requestDTO.setRpcType(rpcType);
         requestDTO.setSign(sign);
         requestDTO.setTimestamp(timestamp);
-        requestDTO.setDubboParams(dubboParams);
         requestDTO.setExtInfo(extInfo);
+        requestDTO.setPathVariable(pathVariable);
+        return requestDTO;
+    }
+
+    public static RequestDTO transformMap(MultiValueMap<String, String> queryParams) {
+        RequestDTO requestDTO = new RequestDTO();
+        requestDTO.setModule(queryParams.getFirst(Constants.MODULE));
+        requestDTO.setMethod(queryParams.getFirst(Constants.METHOD));
+        requestDTO.setRpcType(queryParams.getFirst(Constants.RPC_TYPE));
         return requestDTO;
     }
 
